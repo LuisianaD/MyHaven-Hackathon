@@ -1,0 +1,162 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.Date;
+import java.util.Calendar;
+
+import javax.swing.*;
+
+public class GUI extends JFrame implements ActionListener{
+
+	private JLabel username;
+	private JLabel password;
+	private JLabel gender;
+	private JLabel DOB;
+	private JLabel email;
+	private JLabel phone;
+
+
+	private JTextField usernameT;
+	private JPasswordField passwordT;
+	private JTextField genderT;
+	private JTextField DOBT;
+	private JTextField emailT;
+	private JTextField phoneT;
+	
+	private int today;
+	private int limit;	
+	private JButton create;
+
+	public GUI(){
+		username = new JLabel("Username/Tag");
+		password = new JLabel("Password");
+		gender = new JLabel("Gender");
+		DOB = new JLabel("DOB");
+		email = new JLabel("Email");
+		phone = new JLabel("Cell Phone");
+
+		usernameT = new JTextField(15);
+		passwordT = new JPasswordField(15);
+		genderT = new JTextField(15);
+		DOBT = new JTextField(15);
+		emailT = new JTextField(15);
+		phoneT= new JTextField(15);
+
+		create= new JButton("Create");
+		create.addActionListener(this);
+
+		setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 0;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(username, constraints);
+		setLayout(new GridBagLayout());
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 0;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(usernameT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 1;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(password, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 1;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(passwordT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 2;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(gender, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(genderT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 3;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(DOB, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 3;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(DOBT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 4;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(email, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 4;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(emailT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 5;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(phone, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 1;
+		constraints.gridy = 5;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(phoneT, constraints);
+
+		constraints = new GridBagConstraints();
+		constraints.gridx = 0;
+		constraints.gridy = 6;
+		constraints.insets = new Insets(10, 10, 10, 10);
+		add(create, constraints);
+
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton sourceButton = (JButton) e.getSource();
+		if (sourceButton != create) {
+			return;
+		}
+		
+		int age = Integer.parseInt(DOBT.getText());
+		today = Calendar.getInstance().getWeekYear();
+		limit = today-16;
+		if(age>=limit) {
+			JOptionPane.showMessageDialog(this, "According to your DOB's input, you may be a little young");
+			return;
+			
+
+		}
+	}
+
+	public static void main(String[] args) {
+
+		GUI window = new GUI();
+
+		window.setTitle("MyHaven");
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		window.setSize(500, 500);
+		window.pack();
+		window.setVisible(true);
+	}
+
+
+}
